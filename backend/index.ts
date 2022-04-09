@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUser, getAllUsers } from './services/userServices'
+import { userRouter } from './routes/usersRoutes'
 
 const app = express()
 const port = 3000
@@ -11,8 +11,7 @@ app.get('/', (req, res) => {
     res.send('Hello !')
 })
 
-app.get('/users', getAllUsers)
-app.post('/user', createUser)
+app.use('/userAPI', userRouter)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
