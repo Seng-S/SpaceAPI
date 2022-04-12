@@ -17,3 +17,7 @@ Build the Backend
 ## test the server after build
 
 - >node server/index.js
+
+## DISCLAMIER
+swagger only works for users,
+rover and mission can only be checked by other means
