@@ -22,8 +22,8 @@ app.get('/', (req, res) => {
 
 app.use(cors())
 
-//app.use('/auth', auth)
-//app.use(authenticateToken)
+app.use('/auth', auth)
+app.use(authenticateToken)
 
 app.use('/userAPI', userRouter)
 app.use('/roverAPI', roverRouter)
