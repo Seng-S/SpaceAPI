@@ -3,19 +3,15 @@
     "info": {
         "description": "This is a space API project Documentation",
         "version": "1.0.0",
-        "title": "Space API",
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        }
+        "title": "Space API"
     },
     
     "schemes": ["http"],
-    "host": "localhost:3000",
+    "host": "http://localhost:3000",
     "basePath": "../index.ts",
     "paths" : {
-        "/userAPI" : {
-            "/users/getAllUsers" : {
+        "/userAPI/users" : {
+            "get" : {
                 "summary" : "Get all the users",
                 "description": "Get all the users",
                 "produces": ["application/json"],

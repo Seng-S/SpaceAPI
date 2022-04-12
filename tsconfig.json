@@ -4,6 +4,7 @@
       "module": "commonjs",
       "outDir": "./server",
       "rootDir": "./backend",
+      "resolveJsonModule": true,
       "esModuleInterop": true,
       "strict": true,
       "types": []
