@@ -5,6 +5,11 @@ import { missionRouter } from './routes/missionsRoutes'
 //import { pdoRouter } from './pdo/implements/abstractPdoManager'
 import { auth } from './auth/auth'
 import { authenticateToken } from './auth/middleware'
+import { swaggerDocument, customCss } from './documentation/swagger'
+
+
+const swaggerUi = require("swagger-ui-express");
+
 
 const app = express()
 const port = 3000
@@ -22,6 +27,8 @@ app.get('/', (req, res) => {
 app.use('/userAPI', userRouter)
 app.use('/roverAPI', roverRouter)
 app.use('/missionAPI', missionRouter)
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, null, null, customCss));
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

@@ -1,8 +1,8 @@
 import express from 'express'
+import mongoose from 'mongoose';
 
 export const pdoRouter = express.Router()
 
-const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://root:root@cluster0.jpywx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 const db = mongoose.connection;
 

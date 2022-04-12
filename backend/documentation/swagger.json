@@ -1,0 +1,45 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a space API project Documentation",
+        "version": "1.0.0",
+        "title": "Space API",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "../index.ts",
+    "paths" : {
+        "/userAPI" : {
+            "/users/getAllUsers" : {
+                "summary" : "Get all the users",
+                "description": "Get all the users",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/todosResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
