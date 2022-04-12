@@ -7,8 +7,8 @@
     },
     
     "schemes": ["http"],
-    "host": "http://localhost:3000",
-    "basePath": "../index.ts",
+    "host": "localhost:3000",
+    "basePath": "/",
     "paths" : {
         "/userAPI/user" : {
             "post" : {
@@ -52,7 +52,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/user"
+                                "$ref": "#/definitions/userResponse"
                             }
                         }
                     },
@@ -80,7 +80,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/user"
+                                "$ref": "#/definitions/userResponse"
                             }
                         }
                     },
@@ -114,7 +114,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/user"
+                                "$ref": "#/definitions/userResponse"
                             }
                         }
                     },
@@ -130,8 +130,8 @@
 
         "/userAPI/user/{id}/{otherUserId}/{isAdminTrue}" : {
             "put" : {
-                "summary" : "Update the user if it is the main user or the other user is an admmin",
-                "description": "Update the user if it is the main user or the other user is an admmin",
+                "summary" : "Update the user if it is the main user or the other user is an admin",
+                "description": "Update the user if it is the main user or the other user is an admin",
                 "produces": ["application/json"],
                 "parameters": [
                     {
@@ -162,7 +162,7 @@
                             "properties": {
                                 "user" : {
                                     "type": "object",
-                                    "$ref": "#/definitions/user"
+                                    "$ref": "#/definitions/userResponse"
                                 } 
                             }
                         }
@@ -222,6 +222,42 @@
                     }
                 }
             } 
+        },
+
+        "roverAPI/rover/{isAdminTrue}" : {
+
+        },
+
+        "roverAPI/rover/date/{searchDate}" : {
+            
+        },
+        
+        "roverAPI/rover/name/{searchRoverName}" : {
+            
+        },
+
+        "roverAPI/rovers/{id}/{isAdminTrue}" : {
+            
+        },
+
+        "roverAPI/rover/{id}/{isAdminTrue}" : {
+            
+        },
+
+        "missionAPI/mission/{userId}" : {
+            
+        },
+
+        "missionAPI/missions" : {
+            
+        },
+        
+        "missionAPI/mission/{id}/{userId}/{isAdminTrue}" : {
+        
+        },
+
+        "missionAPI/mission/{id}/{userId}/{isAdminTrue}" : {
+            
         }
 
     },
@@ -255,41 +291,20 @@
             }
         },
 
-        "user": {
+        "InvalidResponse": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "email": {
+                "statusCode": {
                     "type": "string"
                 },
-                "pseudo": {
+                "message": {
                     "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "isAdmin": {
-                    "type": "boolean"
                 }
-
             }
+    
         }
-
-    },
-
-    "InvalidResponse": {
-        "type": "object",
-        "properties": {
-            "statusCode": {
-                "type": "string"
-            },
-            "message": {
-                "type": "string"
-            }
-        }
-
     }
+
+    
 
 }

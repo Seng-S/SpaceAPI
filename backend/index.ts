@@ -5,9 +5,9 @@ import { missionRouter } from './routes/missionsRoutes'
 //import { pdoRouter } from './pdo/implements/abstractPdoManager'
 import { auth } from './auth/auth'
 import { authenticateToken } from './auth/middleware'
-//import * as swag from './documentation/swagger'
 import { swaggerDocument, customCss } from './apiDoc/apiDoc'
 import swaggerUi from "swagger-ui-express"
+import cors from 'cors'
 
 
 const app = express()
@@ -19,6 +19,8 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send('Hello !')
 })
+
+app.use(cors())
 
 //app.use('/auth', auth)
 //app.use(authenticateToken)
