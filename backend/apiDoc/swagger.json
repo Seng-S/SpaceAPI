@@ -1,0 +1,310 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a space API project Documentation",
+        "version": "1.0.0",
+        "title": "Space API"
+    },
+    
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths" : {
+        "/userAPI/user" : {
+            "post" : {
+                "summary" : "Create new users",
+                "description": "Create new users",
+                "produces": ["application/json"],
+                "parameters": [ 
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+
+                    },
+
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+
+                    },
+                    {
+                        "name": "pseudo",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+
+                    },
+                    {
+                        "name": "isAdminTrue",
+                        "in": "path",
+                        "required": true,
+                        "type": "boolean"
+                    }
+                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                    
+                }
+            }
+
+        },
+
+        "/userAPI/users" : {
+            "get" : {
+                "summary" : "Get all the users",
+                "description": "Get all the users",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/userAPI/user/{searchUserId}" : {
+            "get" : {
+                "summary" : "Get the user by id",
+                "description": "Get the user by id",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "searchUserId",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/userAPI/user/{id}/{otherUserId}/{isAdminTrue}" : {
+            "put" : {
+                "summary" : "Update the user if it is the main user or the other user is an admin",
+                "description": "Update the user if it is the main user or the other user is an admin",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+
+                    },
+                    {
+                        "name": "otherUserId",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "isAdminTrue",
+                        "in": "path",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/userResponse"
+                                } 
+                            }
+                        }
+                    }
+                ],
+
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+
+            }
+        },
+        
+        "/userAPI/user/{id}" : {
+           "delete" : {
+                "summary" : "Delete user",
+                "description": "Delete user",
+                "produces": ["application/json"],
+                "parameters" : [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            } 
+        },
+
+        "roverAPI/rover/{isAdminTrue}" : {
+
+        },
+
+        "roverAPI/rover/date/{searchDate}" : {
+            
+        },
+        
+        "roverAPI/rover/name/{searchRoverName}" : {
+            
+        },
+
+        "roverAPI/rovers/{id}/{isAdminTrue}" : {
+            
+        },
+
+        "roverAPI/rover/{id}/{isAdminTrue}" : {
+            
+        },
+
+        "missionAPI/mission/{userId}" : {
+            
+        },
+
+        "missionAPI/missions" : {
+            
+        },
+        
+        "missionAPI/mission/{id}/{userId}/{isAdminTrue}" : {
+        
+        },
+
+        "missionAPI/mission/{id}/{userId}/{isAdminTrue}" : {
+            
+        }
+
+    },
+
+    "definitons": {
+        "userResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "pseudo": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                },
+                "isAdminTrue": {
+                    "type": "boolean"
+                },
+                "otherUserId": {
+                    "type": "integer"
+                }
+
+            }
+        },
+
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+    
+        }
+    }
+
+    
+
+}
