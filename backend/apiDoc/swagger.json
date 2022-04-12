@@ -10,6 +10,64 @@
     "host": "http://localhost:3000",
     "basePath": "../index.ts",
     "paths" : {
+        "/userAPI/user" : {
+            "post" : {
+                "summary" : "Create new users",
+                "description": "Create new users",
+                "produces": ["application/json"],
+                "parameters": [ 
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+
+                    },
+
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+
+                    },
+                    {
+                        "name": "pseudo",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+
+                    },
+                    {
+                        "name": "isAdminTrue",
+                        "in": "path",
+                        "required": true,
+                        "type": "boolean"
+                    }
+                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/user"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                    
+                }
+            }
+
+        },
+
         "/userAPI/users" : {
             "get" : {
                 "summary" : "Get all the users",
@@ -22,7 +80,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/todosResponse"
+                                "$ref": "#/definitions/user"
                             }
                         }
                     },
@@ -33,6 +91,202 @@
                         }
                     }
                 }
+            }
+        },
+
+        "/userAPI/user/{searchUserId}" : {
+            "get" : {
+                "summary" : "Get the user by id",
+                "description": "Get the user by id",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "searchUserId",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/user"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/userAPI/user/{id}/{otherUserId}/{isAdminTrue}" : {
+            "put" : {
+                "summary" : "Update the user if it is the main user or the other user is an admmin",
+                "description": "Update the user if it is the main user or the other user is an admmin",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+
+                    },
+                    {
+                        "name": "otherUserId",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "isAdminTrue",
+                        "in": "path",
+                        "required": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/user"
+                                } 
+                            }
+                        }
+                    }
+                ],
+
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+
+            }
+        },
+        
+        "/userAPI/user/{id}" : {
+           "delete" : {
+                "summary" : "Delete user",
+                "description": "Delete user",
+                "produces": ["application/json"],
+                "parameters" : [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            } 
+        }
+
+    },
+
+    "definitons": {
+        "userResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "pseudo": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                },
+                "isAdminTrue": {
+                    "type": "boolean"
+                },
+                "otherUserId": {
+                    "type": "integer"
+                }
+
+            }
+        },
+
+        "user": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "pseudo": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                }
+
+            }
+        }
+
+    },
+
+    "InvalidResponse": {
+        "type": "object",
+        "properties": {
+            "statusCode": {
+                "type": "string"
+            },
+            "message": {
+                "type": "string"
             }
         }
 

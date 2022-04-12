@@ -6,7 +6,7 @@ import { missionRouter } from './routes/missionsRoutes'
 import { auth } from './auth/auth'
 import { authenticateToken } from './auth/middleware'
 //import * as swag from './documentation/swagger'
-import { swaggerFile, swaggerDocument, customCss } from './apiDoc/apiDoc'
+import { swaggerDocument, customCss } from './apiDoc/apiDoc'
 import swaggerUi from "swagger-ui-express"
 
 
